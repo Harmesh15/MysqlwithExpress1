@@ -15,23 +15,53 @@ connection.connect((err)=>{
         return;
     }
     console.log("mysql connected");
-})
+    createTable();
+});
 
-// const createTable = `create table student(
-//      id INT AUTO_INCCREMENT PRIMARY KEY,
-//      name VARCHAR(20),
-//      email VARCHAR(20),
-// )
-// `
-// connection.execute(createTable,(err)=>{
-//     if(err){
-//         console.log(err);
-//         connection.end();
-//         return;
+function createTable(){
 
-//     }
-//     console.log("Table created");
-// })
+ const usertable = `
+ create table if not exists Users(
+     id int auto_increment primary key,
+     name varchar(20),
+     email varchar(20)
+);
+`;
+
+ const busestable = `
+ create table if not exists Buses(
+           id int auto_increment primary key,
+           busNumber int,
+           totalSeats int,
+           availableSeats varchar(20)
+);
+`;
+
+ const bookingtable = `
+ create table if not exists Booking(
+       id int auto_increment primary key,
+       seatNumber int
+);
+`;
+
+
+const paymentTable = `
+  create table if not exists Payment(
+      id int auto_increment primary key,
+      amountPaid  int,
+      paymentStatus varchar(30)
+);
+`;
+
+
+connection.execute(usertable);
+connection.execute(busestable);
+connection.execute(bookingtable);
+connection.execute(paymentTable);
+
+console.log("Tables created succesfully");
+
+}
 
 app.get("/",(req,res)=>{
     res.send("hello from server");
