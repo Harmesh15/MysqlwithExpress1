@@ -26,14 +26,14 @@ function createTable(){
 );
 `;
 
- const busestable = `
- create table if not exists Buses(
-           id int auto_increment primary key,
-           busNumber int,
-           totalSeats int,
-           availableSeats varchar(20)
-);
-`;
+//  const busestable = `
+//  CREATE TABLE Busbooking (
+//     id INT AUTO_INCREMENT PRIMARY KEY,
+//     busNumber VARCHAR(50) UNIQUE NOT NULL,
+//     totalSeats INT NOT NULL,
+//     availableSeats INT NOT NULL
+// );
+// `;
 
  const bookingtable = `
  create table if not exists Booking(
@@ -53,7 +53,7 @@ const paymentTable = `
 
 
 connection.execute(usertable);
-connection.execute(busestable);
+// connection.execute(busestable);
 connection.execute(bookingtable);
 connection.execute(paymentTable);
 
